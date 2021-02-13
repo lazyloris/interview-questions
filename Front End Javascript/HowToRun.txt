@@ -1,0 +1,3 @@
+To run these make sure you have node installed then run
+node {filename}
+ex. node Q1_add

@@ -1,0 +1,55 @@
+/*
+given the first two data structures create a new
+structure where the locations are matched?!?!
+
+see desired result to show what it should look like
+*/
+
+
+const locations = {
+    "1": { address: 'abc' },
+    "2": { address: 'def' },
+    "3": { address: 'ghi' }
+};
+
+const vehicles = [
+    { "stockNumber": 923872, "locationId" : 1 },
+    { "stockNumber": 329827, "locationId" : 3 },
+    { "stockNumber": 432322, "locationId" : 1 },
+    { "stockNumber": 709892, "locationId" : 1 },
+    { "stockNumber": 122333, "locationId" : 3 }
+];
+
+const desiredResult = {
+ "1": [
+    { address: "abc", stockNumber: 923872 },
+    { address: "abc", stockNumber: 432322 },
+    { address: "abc", stockNumber: 709892 }
+ ],
+ "3": [
+     { address: "ghi", stockNumber: 329827 },
+     { address: "ghi", stockNumber: 122333 }
+ ]
+}
+const getVehiclesAtLocations = (locations, vehicles) => {
+    let result = new Map();
+
+    vehicles.forEach((objVehicle)=>{
+
+        let placeholder = {...locations[1], "stockNumber": objVehicle.stockNumber};
+
+        let arrayPlaceholder=[];
+        if(result.has(objVehicle.locationId)){
+            arrayPlaceholder = result.get(objVehicle.locationId);
+        }
+        let objectPlaceholder = {...locations[objVehicle.locationId], "stockNumber":objVehicle.stockNumber}
+        arrayPlaceholder.push(objectPlaceholder);
+
+        result.set(objVehicle.locationId, arrayPlaceholder);
+
+
+    })
+    return result;
+};
+
+console.log(getVehiclesAtLocations(locations, vehicles))
