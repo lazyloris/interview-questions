@@ -1,0 +1,48 @@
+/*
+asked 2/11/2021
+given an array of objects check if the elements contain a substring
+and return a new array containing them
+
+this example is supposed to return an array like this
+[ 'this foo is here', 'this foor data', 'this foo is here' ]
+
+*/
+
+
+const text = [
+    {
+    data: 'this is data',
+    data1: 'this is also data',
+    data2: 'this foo is here',
+    data3: 'this foor data'
+    },
+   {
+    data: 'this is data',
+    data1: 'this is also data',
+    data2: 'this foo is here',
+    data3: 'this isnt data'
+    },
+]
+
+let subStrings = (array, searchTerm) =>{
+       let returnArray = [];
+
+        //here we will do a check on every element
+        //this solution works if data is known but not good
+        //if we dont know the structure of the keys
+       array.forEach((obj)=>{
+          if (obj.data.includes(searchTerm)  )
+            returnArray.push(obj.data)
+          if (obj.data1.includes(searchTerm)  )
+            returnArray.push(obj.data1)
+          if (obj.data2.includes(searchTerm)  )
+            returnArray.push(obj.data2)
+          if (obj.data3.includes(searchTerm)  )
+            returnArray.push(obj.data3)
+
+       })
+    return returnArray;
+
+}
+
+console.log(subStrings(text,'foo'));
